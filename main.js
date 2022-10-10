@@ -5,26 +5,20 @@ const hole = 'O';
 const fieldCharacter = '░';
 const pathCharacter = '*';
 
-
-const myField = new Field([
-    ['*', '░', 'O'],
-    ['░', 'O', '░'],
-    ['░', '^', '░'],
-  ]);
-
-
 const Field = class {
-    constructor(field) {
+    constructor(field = [[]]) {
         this.field = field
     };
 
     print() {
-        let fieldState;
-        fieldState.join(field);
-        return fieldState;
-    }
+        const displayString = this.field.map(row => {
+            return row.join('');
+          }).join('\n');
+        console.log(displayString);
+      }
 };
 
+const path = prompt('Which  way?');
 
 
-  console.log(this.field);
+console.log(this.field);
