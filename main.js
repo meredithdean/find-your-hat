@@ -14,6 +14,32 @@ const Field = class {
         this.field[0][0] = pathCharacter;
     };
 
+    runGame() {
+        let playing = true;
+        while(playing) {
+            this.print();
+            this.askQuestion();
+            if(!this.isInBounds()) {
+                console.log('Sorry, you landed out of bounds!');
+                playing = false;
+                break;
+            } else if (this.isHole()) {
+                console.log('Sorry, you fell down a hole!');
+                playing = false;
+                break;
+            } else if (this.isHat()) {
+                console.log('Congrats, you found your hat!');
+                playing = false;
+                break;
+            }
+             // update current location on the map
+            this.field[this.locationY][this.locationX] = pathCharacter;
+        }
+    }
+
+   
+    
+
     askQuestion() {
         const answer = prompt('Which  way?').toUpperCase();
         switch(answer) {
@@ -34,7 +60,7 @@ const Field = class {
                 this.askQuestion();
                 break;
         }
-    }
+    };
 
     print() {
         const displayString = this.field.map(row => {
