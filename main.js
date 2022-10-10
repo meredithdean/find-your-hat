@@ -14,6 +14,28 @@ const Field = class {
         this.field[0][0] = pathCharacter;
     };
 
+    askQuestion() {
+        const answer = prompt('Which  way?').toUpperCase();
+        switch(answer) {
+            case 'U': 
+                this.locationY -= 1;
+                break;
+            case 'D': 
+                this.locationY += 1;
+                break;
+            case 'L': 
+                this.locationX -= 1;
+                break;
+            case 'R': 
+                this.locationX += 1;
+                break;
+            default:
+                console.log('Enter U, D, L or R.');
+                this.askQuestion();
+                break;
+        }
+    }
+
     print() {
         const displayString = this.field.map(row => {
             return row.join('');
@@ -37,9 +59,9 @@ const Field = class {
       isHole() {
         return this.field[this.locationY][this.locationX] === hole;
       }
-};
 
-const path = prompt('Which  way?');
+    
+};
 
 
 console.log(this.field);
